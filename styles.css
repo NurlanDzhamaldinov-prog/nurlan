@@ -334,3 +334,100 @@ body{
     grid-template-rows:52svh 34svh 34svh;
   }
 }
+
+/* Split hero: photo and text never overlap */
+.hero.hero-split{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:48% 52%;
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+  background:var(--bg);
+}
+.hero-photo-panel{
+  position:relative;
+  min-height:100vh;
+  overflow:hidden;
+  background:var(--bg);
+}
+.hero-photo-panel::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg, transparent 0 82%, rgba(9,9,9,.35) 92%, var(--bg) 100%);
+  pointer-events:none;
+}
+.hero.hero-split .hero-image{
+  position:absolute;
+  inset:0;
+  background:url("assets/portrait-hero.jpeg") center 20%/cover no-repeat;
+}
+.hero-copy-panel{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  background:var(--bg);
+  position:relative;
+  z-index:2;
+}
+.hero.hero-split .hero-copy{
+  margin:0;
+  max-width:720px;
+  padding:120px 7vw 90px 8vw;
+  width:100%;
+  animation:heroCopyIn 1s ease both;
+}
+.hero.hero-split .hero h1{
+  font-size:clamp(76px,8.2vw,145px);
+  line-height:.86;
+  margin:14px 0 20px;
+}
+.hero.hero-split .hero-note{
+  max-width:520px;
+}
+.hero.hero-split .scroll{
+  right:34px;
+  bottom:28px;
+}
+@media (max-width:1100px){
+  .hero.hero-split{
+    grid-template-columns:46% 54%;
+  }
+  .hero.hero-split .hero-copy{
+    padding-left:7vw;
+    padding-right:4vw;
+  }
+}
+@media (max-width:900px){
+  .hero.hero-split{
+    display:block;
+    min-height:auto;
+  }
+  .hero-photo-panel{
+    min-height:64svh;
+  }
+  .hero-photo-panel::after{
+    background:linear-gradient(180deg, transparent 0 72%, rgba(9,9,9,.45) 88%, var(--bg) 100%);
+  }
+  .hero.hero-split .hero-image{
+    background-position:44% 18%;
+  }
+  .hero-copy-panel{
+    min-height:auto;
+    display:block;
+  }
+  .hero.hero-split .hero-copy{
+    padding:34px 18px 56px;
+  }
+  .hero.hero-split .hero h1{
+    font-size:clamp(64px,20vw,90px);
+    margin-top:10px;
+  }
+  .hero.hero-split .hero-note{
+    max-width:100%;
+  }
+  .hero.hero-split .scroll{
+    display:none;
+  }
+}
