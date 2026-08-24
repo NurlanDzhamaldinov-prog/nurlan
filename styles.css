@@ -558,3 +558,66 @@ body{
 .event-info p{color:var(--muted);margin:0 0 18px}
 .event-time{font-size:13px;letter-spacing:.08em}
 @media(max-width:700px){.events-grid{grid-template-columns:1fr}.event-info{padding:20px}.event-info h3{font-size:34px}}
+
+/* Contact button + social icons */
+.contact-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:20px;
+  min-width:210px;
+  padding:15px 26px;
+  border:1px solid rgba(241,238,232,.32);
+  font-size:11px;
+  letter-spacing:.18em;
+  transition:background .25s ease,color .25s ease,border-color .25s ease,transform .2s ease;
+}
+.contact-button:hover{
+  background:var(--text);
+  color:#090909;
+  border-color:var(--text);
+  transform:translateY(-1px);
+}
+.social-icons-wrap{display:flex;align-items:flex-end}
+.social-icons{display:flex;gap:12px;align-items:center;margin-top:8px}
+.social-icon,.top-socials a{
+  width:36px;height:36px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid var(--line);
+  border-radius:50%;
+  transition:border-color .2s ease,background .2s ease,transform .2s ease;
+}
+.social-icon:hover,.top-socials a:hover{
+  border-color:rgba(241,238,232,.5);
+  background:rgba(241,238,232,.05);
+  transform:translateY(-1px);
+}
+.social-icon svg,.top-socials svg{
+  width:16px;height:16px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.social-icon svg path:first-child,.top-socials svg path:first-child{
+  fill:currentColor;
+  stroke:none;
+}
+.social-icon svg path:last-child,.top-socials svg path:last-child{
+  fill:none;
+}
+.top-socials{
+  display:flex;
+  gap:8px;
+  margin-left:4px;
+}
+.top-socials a{width:30px;height:30px}
+.top-socials svg{width:14px;height:14px}
+@media(max-width:900px){
+  .top-socials{display:none}
+  .contact-button{min-width:180px}
+  .social-icons{margin-top:4px}
+}

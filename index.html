@@ -9,6 +9,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="shortcut icon" href="assets/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
 </head>
 <body>
   <header class="topbar">
@@ -19,6 +22,14 @@
       <a href="#contact" data-ru="КОНТАКТ" data-en="CONTACT">КОНТАКТ</a>
       <a href="#events" data-ru="АФИША" data-en="EVENTS">АФИША</a>
     </nav>
+    <div class="top-socials">
+      <a href="https://www.instagram.com/nurlan_dzhamaldinov/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.4" cy="6.7" r="1"></circle></svg>
+      </a>
+      <a href="https://t.me/nurlan_dzhamaldinov" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 4.2 3.9 10.7c-1.1.4-1.1 1.1-.2 1.4l4.3 1.3 1.6 5c.2.6.1.8.8.8.5 0 .8-.2 1-.4l2.1-2 4.4 3.2c.8.5 1.4.2 1.6-.8l2.8-13.3c.3-1.2-.5-1.8-1.7-1.4Z"></path><path d="m8 13.4 9.5-6c.5-.3.9-.1.5.2l-7.9 7.1-.3 3.2"></path></svg>
+      </a>
+    </div>
     <button class="lang" id="langToggle" aria-label="Switch language">RU / EN</button>
     <button class="mobile-menu" id="mobileMenuBtn" aria-label="Open menu">MENU</button>
     <div class="mobile-drawer" id="mobileDrawer">
@@ -198,12 +209,16 @@
       <div class="contact-grid">
         <div>
           <div class="meta">BOOKING / MANAGEMENT</div>
-          <a class="big-link" href="tel:+79380776990">+7 938 077-69-90</a>
+          <a class="contact-button" href="tel:+79380776990" data-ru="СВЯЗАТЬСЯ" data-en="CONTACT">СВЯЗАТЬСЯ</a>
         </div>
-        <div>
-          <div class="meta" data-ru="СОЦСЕТИ" data-en="SOCIALS">СОЦСЕТИ</div>
-          <div class="socials">
-            <a href="https://www.instagram.com/nurlan_dzhamaldinov/" target="_blank" rel="noopener">Instagram</a>
+        <div class="social-icons-wrap">
+          <div class="social-icons">
+            <a class="social-icon" href="https://www.instagram.com/nurlan_dzhamaldinov/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.4" cy="6.7" r="1"></circle></svg>
+            </a>
+            <a class="social-icon" href="https://t.me/nurlan_dzhamaldinov" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 4.2 3.9 10.7c-1.1.4-1.1 1.1-.2 1.4l4.3 1.3 1.6 5c.2.6.1.8.8.8.5 0 .8-.2 1-.4l2.1-2 4.4 3.2c.8.5 1.4.2 1.6-.8l2.8-13.3c.3-1.2-.5-1.8-1.7-1.4Z"></path><path d="m8 13.4 9.5-6c.5-.3.9-.1.5.2l-7.9 7.1-.3 3.2"></path></svg>
+            </a>
           </div>
         </div>
       </div>
