@@ -624,3 +624,74 @@ body{
 
 /* PWA install */
 .install-card{display:flex;justify-content:space-between;gap:32px;align-items:center;padding:28px;border:1px solid var(--line);background:rgba(255,255,255,.02)}.install-card p{margin:0 0 10px;max-width:720px;font-size:18px;line-height:1.6}.install-card small{color:var(--muted);line-height:1.6}.install-app-button{min-width:180px;padding:15px 22px;border:1px solid rgba(241,238,232,.35);background:transparent;color:var(--text);font:500 11px/1 "Manrope",sans-serif;letter-spacing:.16em;cursor:pointer}.install-app-button:hover{background:var(--text);color:#090909}@media(max-width:700px){.install-card{flex-direction:column;align-items:flex-start}.install-app-button{width:100%}}
+
+/* === Approved typography: Variant C / Ethnic Contemporary === */
+:root{
+  --brand-gold:#c9a56a;
+  --brand-gold-soft:#e2c48e;
+}
+
+.brand{
+  font-family:"Cormorant Garamond",serif;
+  font-weight:600;
+  letter-spacing:.22em;
+}
+
+.hero-copy h1{
+  position:relative;
+  display:inline-block;
+  font-family:"Cormorant Garamond",serif;
+  font-weight:500;
+  letter-spacing:.09em;
+  color:#eee7dc;
+  text-shadow:0 0 28px rgba(201,165,106,.10);
+}
+
+.hero-copy h1::after{
+  content:"";
+  display:block;
+  width:42%;
+  height:1px;
+  margin:18px auto 0;
+  background:linear-gradient(90deg,transparent,var(--brand-gold),transparent);
+  box-shadow:0 0 12px rgba(201,165,106,.35);
+}
+
+.hero-copy .kicker{
+  color:var(--brand-gold-soft);
+  letter-spacing:.34em;
+}
+
+.section h2,
+.release-info h3,
+.event-info h3{
+  font-family:"Cormorant Garamond",serif;
+  font-weight:500;
+  letter-spacing:.025em;
+}
+
+.section-head .kicker,
+.nav a,
+.lang-switch,
+.install-app-button{
+  font-family:"Manrope",system-ui,sans-serif;
+  letter-spacing:.16em;
+}
+
+@media (max-width:700px){
+  .hero-copy h1{letter-spacing:.055em}
+  .hero-copy h1::after{width:54%;margin-top:12px}
+}
+
+.hero-brand-line{
+  margin-top:20px;
+  font-family:"Manrope",system-ui,sans-serif;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.38em;
+  color:rgba(226,196,142,.82);
+  text-transform:uppercase;
+}
+@media(max-width:700px){
+  .hero-brand-line{font-size:8px;letter-spacing:.24em;margin-top:16px}
+}
