@@ -621,3 +621,6 @@ body{
   .contact-button{min-width:180px}
   .social-icons{margin-top:4px}
 }
+
+/* PWA install */
+.install-card{display:flex;justify-content:space-between;gap:32px;align-items:center;padding:28px;border:1px solid var(--line);background:rgba(255,255,255,.02)}.install-card p{margin:0 0 10px;max-width:720px;font-size:18px;line-height:1.6}.install-card small{color:var(--muted);line-height:1.6}.install-app-button{min-width:180px;padding:15px 22px;border:1px solid rgba(241,238,232,.35);background:transparent;color:var(--text);font:500 11px/1 "Manrope",sans-serif;letter-spacing:.16em;cursor:pointer}.install-app-button:hover{background:var(--text);color:#090909}@media(max-width:700px){.install-card{flex-direction:column;align-items:flex-start}.install-app-button{width:100%}}
