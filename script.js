@@ -27,3 +27,14 @@ if (mobileMenuBtn && mobileDrawer) {
 }
 
 if("serviceWorker"in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js"));}let deferredInstallPrompt=null;const installBtn=document.getElementById("installAppBtn");window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstallPrompt=e;});if(installBtn){installBtn.addEventListener("click",async()=>{if(deferredInstallPrompt){deferredInstallPrompt.prompt();await deferredInstallPrompt.userChoice;deferredInstallPrompt=null;}else{alert(document.documentElement.lang==="en"?"On iPhone: Share → Add to Home Screen.":"На iPhone: нажми «Поделиться» → «На экран Домой».");}});}
+// Media filters
+document.querySelectorAll(".media-tab").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".media-tab").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    const filter=btn.dataset.filter;
+    document.querySelectorAll(".media-card").forEach(card=>{
+      card.style.display=(filter==="all"||card.dataset.type===filter)?"":"none";
+    });
+  });
+});

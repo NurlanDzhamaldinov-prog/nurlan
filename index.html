@@ -20,6 +20,8 @@
     <a class="brand" href="#home">НУРЛАН</a>
     <nav class="nav">
       <a href="#music" data-ru="МУЗЫКА" data-en="MUSIC">МУЗЫКА</a>
+      <a href="#media" data-ru="МЕДИА" data-en="MEDIA">МЕДИА</a>
+      <a href="#news" data-ru="НОВОСТИ" data-en="NEWS">НОВОСТИ</a>
       <a href="#about" data-ru="ОБ АРТИСТЕ" data-en="ABOUT">ОБ АРТИСТЕ</a>
       <a href="#contact" data-ru="КОНТАКТ" data-en="CONTACT">КОНТАКТ</a>
       <a href="#events" data-ru="АФИША" data-en="EVENTS">АФИША</a>
@@ -36,6 +38,8 @@
     <button class="mobile-menu" id="mobileMenuBtn" aria-label="Open menu">MENU</button>
     <div class="mobile-drawer" id="mobileDrawer">
       <a href="#music" data-ru="МУЗЫКА" data-en="MUSIC">МУЗЫКА</a>
+        <a href="#media" data-ru="МЕДИА" data-en="MEDIA">МЕДИА</a>
+        <a href="#news" data-ru="НОВОСТИ" data-en="NEWS">НОВОСТИ</a>
       <a href="#about" data-ru="ОБ АРТИСТЕ" data-en="ABOUT">ОБ АРТИСТЕ</a>
       <a href="#contact" data-ru="КОНТАКТ" data-en="CONTACT">КОНТАКТ</a>
       <a href="#events" data-ru="АФИША" data-en="EVENTS">АФИША</a>
@@ -170,6 +174,83 @@
       </div>
     </section>
 
+    <section class="section media-section" id="media">
+      <div class="section-head media-head">
+        <div>
+          <span class="kicker">MEDIA</span>
+          <h2 data-ru="Медиа" data-en="Media">Медиа</h2>
+        </div>
+        <div class="media-tabs" role="tablist" aria-label="Media filter">
+          <button class="media-tab active" data-filter="all" type="button" data-ru="ВСЕ" data-en="ALL">ВСЕ</button>
+          <button class="media-tab" data-filter="video" type="button" data-ru="ВИДЕО" data-en="VIDEO">ВИДЕО</button>
+          <button class="media-tab" data-filter="photo" type="button" data-ru="ФОТО" data-en="PHOTO">ФОТО</button>
+        </div>
+      </div>
+      <div class="media-grid">
+        <a class="media-card media-card-main" data-type="video" href="#music">
+          <img src="assets/ariusa-sen.png" alt="НУРЛАН — Ариуса Сен" loading="lazy">
+          <div class="media-overlay">
+            <span class="media-play">▶</span>
+            <div><b data-ru="АРИУСА СЕН" data-en="ARIUSA SEN">АРИУСА СЕН</b><small data-ru="Релиз / музыкальное видео" data-en="Release / music video">Релиз / музыкальное видео</small></div>
+          </div>
+        </a>
+        <a class="media-card" data-type="photo" href="#events">
+          <img src="assets/event-2026-08-28-tyrnyauz.png" alt="Афиша — Тырныауз" loading="lazy">
+          <div class="media-overlay"><div><b data-ru="ТЫРНЫАУЗ" data-en="TYRNYAUZ">ТЫРНЫАУЗ</b><small data-ru="Афиша концерта" data-en="Concert poster">Афиша концерта</small></div></div>
+        </a>
+        <a class="media-card" data-type="photo" href="#events">
+          <img src="assets/event-2026-09-05-kashkhatau.jpg" alt="Афиша — Кашхатау" loading="lazy">
+          <div class="media-overlay"><div><b data-ru="КАШХАТАУ" data-en="KASHKHATAU">КАШХАТАУ</b><small data-ru="Афиша концерта" data-en="Concert poster">Афиша концерта</small></div></div>
+        </a>
+        <a class="media-card" data-type="video" href="#music">
+          <img src="assets/ilyachin.png" alt="НУРЛАН — Илячин" loading="lazy">
+          <div class="media-overlay"><span class="media-play small">▶</span><div><b data-ru="ИЛЯЧИН" data-en="ILYACHIN">ИЛЯЧИН</b><small data-ru="Совместный релиз" data-en="Collaboration release">Совместный релиз</small></div></div>
+        </a>
+        <a class="media-card" data-type="photo" href="#music">
+          <img src="assets/ariu-kyzym.png" alt="НУРЛАН — Ариу Къызым" loading="lazy">
+          <div class="media-overlay"><div><b data-ru="АРИУ КЪЫЗЫМ" data-en="ARIU KYZYM">АРИУ КЪЫЗЫМ</b><small data-ru="Обложка релиза" data-en="Release artwork">Обложка релиза</small></div></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section news-section" id="news">
+      <div class="section-head">
+        <span class="kicker">NEWS</span>
+        <h2 data-ru="Новости" data-en="News">Новости</h2>
+      </div>
+      <div class="news-grid">
+        <article class="news-card">
+          <span class="news-tag" data-ru="РЕЛИЗ" data-en="RELEASE">РЕЛИЗ</span>
+          <h3 data-ru="«Ариуса Сен» — новый релиз" data-en="“Ariusa Sen” — new release">«Ариуса Сен» — новый релиз</h3>
+          <p data-ru="Главный релиз в дискографии сайта — уже доступен в Яндекс Музыке."
+             data-en="The featured release is now available on Yandex Music.">
+             Главный релиз в дискографии сайта — уже доступен в Яндекс Музыке.
+          </p>
+          <a href="https://music.yandex.ru/album/39880257/track/146494097" target="_blank" rel="noopener" data-ru="СЛУШАТЬ ↗" data-en="LISTEN ↗">СЛУШАТЬ ↗</a>
+        </article>
+        <article class="news-card">
+          <span class="news-tag" data-ru="КОНЦЕРТ" data-en="CONCERT">КОНЦЕРТ</span>
+          <h3 data-ru="28 августа — Тырныауз" data-en="28 August — Tyrnyauz">28 августа — Тырныауз</h3>
+          <p data-ru="Дворец культуры им. К. Кулиева. Начало в 19:00."
+             data-en="K. Kuliev Palace of Culture. Starts at 19:00.">
+             Дворец культуры им. К. Кулиева. Начало в 19:00.
+          </p>
+          <a href="#events" data-ru="АФИША →" data-en="EVENTS →">АФИША →</a>
+        </article>
+        <article class="news-card">
+          <span class="news-tag" data-ru="КОНЦЕРТ" data-en="CONCERT">КОНЦЕРТ</span>
+          <h3 data-ru="5 сентября — Кашхатау" data-en="5 September — Kashkhatau">5 сентября — Кашхатау</h3>
+          <p data-ru="Дом культуры. Начало в 19:00."
+             data-en="House of Culture. Starts at 19:00.">
+             Дом культуры. Начало в 19:00.
+          </p>
+          <a href="#events" data-ru="АФИША →" data-en="EVENTS →">АФИША →</a>
+        </article>
+      </div>
+    </section>
+
+
+
 <section class="section split" id="about">
       <div class="portrait portrait-dark"></div>
       <div class="about-copy">
@@ -223,10 +304,49 @@
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 4.2 3.9 10.7c-1.1.4-1.1 1.1-.2 1.4l4.3 1.3 1.6 5c.2.6.1.8.8.8.5 0 .8-.2 1-.4l2.1-2 4.4 3.2c.8.5 1.4.2 1.6-.8l2.8-13.3c.3-1.2-.5-1.8-1.7-1.4Z"></path><path d="m8 13.4 9.5-6c.5-.3.9-.1.5.2l-7.9 7.1-.3 3.2"></path></svg>
             </a>
           </div>
+        
+          <div class="hero-portal-actions">
+            <a class="portal-primary" href="#music" data-ru="СЛУШАТЬ НУРЛАНА" data-en="LISTEN TO NURLAN">СЛУШАТЬ НУРЛАНА</a>
+            <a class="portal-secondary" href="#events" data-ru="БЛИЖАЙШИЙ КОНЦЕРТ" data-en="NEXT CONCERT">БЛИЖАЙШИЙ КОНЦЕРТ</a>
+          </div>
+</div>
+      </div>
+    </section>
+  
+    <section class="section timeline-section" id="story">
+      <div class="section-head">
+        <span class="kicker">STORY</span>
+        <h2 data-ru="История" data-en="Story">История</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-icon">⌂</div>
+          <h3 data-ru="Нальчик" data-en="Nalchik">Нальчик</h3>
+          <p data-ru="Кабардино-Балкария — место, где начинается история артиста." data-en="Kabardino-Balkaria — where the artist’s story begins.">Кабардино-Балкария — место, где начинается история артиста.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-icon">♪</div>
+          <h3 data-ru="С 11 лет" data-en="Since age 11">С 11 лет</h3>
+          <p data-ru="Музыка становится частью жизни и будущего творческого пути." data-en="Music becomes part of life and the future creative path.">Музыка становится частью жизни и будущего творческого пути.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-icon">◈</div>
+          <h3 data-ru="Своё звучание" data-en="Own sound">Своё звучание</h3>
+          <p data-ru="Национальная культура соединяется с современным звучанием и разными жанрами." data-en="National culture meets contemporary sound and multiple genres.">Национальная культура соединяется с современным звучанием и разными жанрами.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-icon">●</div>
+          <h3 data-ru="Новый этап" data-en="New chapter">Новый этап</h3>
+          <p data-ru="Новые релизы, концерты и развитие собственного музыкального пространства." data-en="New releases, live shows and growth of the artist’s own music world.">Новые релизы, концерты и развитие собственного музыкального пространства.</p>
         </div>
       </div>
     </section>
-  <section class="section install-section"><div class="section-head"><span class="kicker">APP</span><h2 data-ru="Приложение" data-en="App">Приложение</h2></div><div class="install-card"><div><p data-ru="Установи сайт НУРЛАН на главный экран телефона и открывай его как отдельное приложение." data-en="Install NURLAN on your home screen and open it like a standalone app.">Установи сайт НУРЛАН на главный экран телефона и открывай его как отдельное приложение.</p><small data-ru="На iPhone: Поделиться → На экран «Домой». На Android кнопка установки появится автоматически, если браузер поддерживает PWA." data-en="On iPhone: Share → Add to Home Screen. On Android the install button appears automatically when supported.">На iPhone: Поделиться → На экран «Домой». На Android кнопка установки появится автоматически, если браузер поддерживает PWA.</small></div><button class="install-app-button" id="installAppBtn" type="button" data-ru="УСТАНОВИТЬ" data-en="INSTALL">УСТАНОВИТЬ</button></div></section></main>
+
+<section class="section install-section"><div class="section-head"><span class="kicker">APP</span><h2 data-ru="Приложение" data-en="App">Приложение</h2></div><div class="install-card"><div><p data-ru="Установи сайт НУРЛАН на главный экран телефона и открывай его как отдельное приложение." data-en="Install NURLAN on your home screen and open it like a standalone app.">Установи сайт НУРЛАН на главный экран телефона и открывай его как отдельное приложение.</p><small data-ru="На iPhone: Поделиться → На экран «Домой». На Android кнопка установки появится автоматически, если браузер поддерживает PWA." data-en="On iPhone: Share → Add to Home Screen. On Android the install button appears automatically when supported.">На iPhone: Поделиться → На экран «Домой». На Android кнопка установки появится автоматически, если браузер поддерживает PWA.</small></div><button class="install-app-button" id="installAppBtn" type="button" data-ru="УСТАНОВИТЬ" data-en="INSTALL">УСТАНОВИТЬ</button></div></section></main>
 
   <footer>
     <span>© 2026 НУРЛАН</span>
