@@ -1,12 +1,16 @@
 const btn = document.getElementById("langToggle");
 let lang = "ru";
-btn.addEventListener("click", () => {
-  lang = lang === "ru" ? "en" : "ru";
-  document.documentElement.lang = lang;
-  document.querySelectorAll("[data-ru][data-en]").forEach(el => {
-    el.textContent = el.dataset[lang];
+
+if (btn) {
+  btn.addEventListener("click", () => {
+    lang = lang === "ru" ? "en" : "ru";
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-ru][data-en]").forEach(el => {
+      el.textContent = el.dataset[lang];
+    });
   });
-});
+}
+
 const mobileMenuBtn = document.getElementById("mobileMenuBtn");
 const mobileDrawer = document.getElementById("mobileDrawer");
 
@@ -26,7 +30,76 @@ if (mobileMenuBtn && mobileDrawer) {
   });
 }
 
-if("serviceWorker"in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js"));}let deferredInstallPrompt=null;const installBtn=document.getElementById("installAppBtn");window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstallPrompt=e;});if(installBtn){installBtn.addEventListener("click",async()=>{if(deferredInstallPrompt){deferredInstallPrompt.prompt();await deferredInstallPrompt.userChoice;deferredInstallPrompt=null;}else{alert(document.documentElement.lang==="en"?"On iPhone: Share → Add to Home Screen.":"На iPhone: нажми «Поделиться» → «На экран Домой».");}});}
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js"));
+}
+
+let deferredInstallPrompt = null;
+const installBtn = document.getElementById("installAppBtn");
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+});
+
+if (installBtn) {
+  installBtn.addEventListener("click", async () => {
+    if (deferredInstallPrompt) {
+      deferredInstallPrompt.prompt();
+      await deferredInstallPrompt.userChoice;
+      deferredInstallPrompt = null;
+    } else {
+      alert(document.documentElement.lang === "en"
+        ? "On iPhone: Share → Add to Home Screen."
+        : "На iPhone: нажми «Поделиться» → «На экран Домой».");
+    }
+  });
+}
+
+// Дополнительные прошедшие концерты.
+const extraPastEvents = [
+  {
+    date: "2026-07-15",
+    dateRu: "15 ИЮЛЯ",
+    dateEn: "15 JULY",
+    cityRu: "Черкесск",
+    cityEn: "Cherkessk",
+    venueRu: "Амфитеатр «Зелёный остров»",
+    venueEn: "Green Island Amphitheatre",
+    timeRu: "Начало · 19:00",
+    timeEn: "Starts · 19:00",
+    alt: "НУРЛАН — Черкесск, 15 июля",
+    image: "assets/event-2026-07-15-cherkessk.webp"
+  },
+  {
+    date: "2026-05-28",
+    dateRu: "28 МАЯ",
+    dateEn: "28 MAY",
+    cityRu: "Нальчик",
+    cityEn: "Nalchik",
+    venueRu: "Дом молодёжи",
+    venueEn: "Youth House",
+    timeRu: "Начало · 19:00",
+    timeEn: "Starts · 19:00",
+    alt: "НУРЛАН — Нальчик, 28 мая",
+    image: "assets/event-2026-05-28-nalchik.webp"
+  }
+];
+
+const makeEventCard = (event) => {
+  const article = document.createElement("article");
+  article.className = "event-card";
+  article.dataset.date = event.date;
+  article.innerHTML = `
+    <img src="${event.image}" alt="${event.alt}" loading="lazy">
+    <div class="event-info">
+      <div class="event-date" data-ru="${event.dateRu}" data-en="${event.dateEn}">${lang === "en" ? event.dateEn : event.dateRu}</div>
+      <h3 data-ru="${event.cityRu}" data-en="${event.cityEn}">${lang === "en" ? event.cityEn : event.cityRu}</h3>
+      <p data-ru="${event.venueRu}" data-en="${event.venueEn}">${lang === "en" ? event.venueEn : event.venueRu}</p>
+      <span class="event-time" data-ru="${event.timeRu}" data-en="${event.timeEn}">${lang === "en" ? event.timeEn : event.timeRu}</span>
+    </div>
+  `;
+  return article;
+};
 
 // Афиша: будущие концерты остаются в основной сетке,
 // прошедшие автоматически перемещаются в сворачиваемый архив.
@@ -34,6 +107,8 @@ if("serviceWorker"in navigator){window.addEventListener("load",()=>navigator.ser
   const section = document.querySelector(".events-section");
   const grid = section?.querySelector(".events-grid");
   if (!section || !grid) return;
+
+  extraPastEvents.forEach(event => grid.appendChild(makeEventCard(event)));
 
   const cards = Array.from(grid.querySelectorAll(".event-card"));
   if (!cards.length) return;
@@ -75,13 +150,9 @@ if("serviceWorker"in navigator){window.addEventListener("load",()=>navigator.ser
 
   cards.forEach((card) => {
     const date = getEventDate(card);
-    if (!date) {
-      unknown.push({ card, date: null });
-    } else if (date >= today) {
-      upcoming.push({ card, date });
-    } else {
-      past.push({ card, date });
-    }
+    if (!date) unknown.push({ card, date: null });
+    else if (date >= today) upcoming.push({ card, date });
+    else past.push({ card, date });
   });
 
   upcoming.sort((a, b) => a.date - b.date);
