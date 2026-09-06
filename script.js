@@ -28,6 +28,106 @@ if (mobileMenuBtn && mobileDrawer) {
 
 if("serviceWorker"in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js"));}let deferredInstallPrompt=null;const installBtn=document.getElementById("installAppBtn");window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstallPrompt=e;});if(installBtn){installBtn.addEventListener("click",async()=>{if(deferredInstallPrompt){deferredInstallPrompt.prompt();await deferredInstallPrompt.userChoice;deferredInstallPrompt=null;}else{alert(document.documentElement.lang==="en"?"On iPhone: Share → Add to Home Screen.":"На iPhone: нажми «Поделиться» → «На экран Домой».");}});}
 
+// Афиша: будущие концерты остаются в основной сетке,
+// прошедшие автоматически перемещаются в сворачиваемый архив.
+(() => {
+  const section = document.querySelector(".events-section");
+  const grid = section?.querySelector(".events-grid");
+  if (!section || !grid) return;
+
+  const cards = Array.from(grid.querySelectorAll(".event-card"));
+  if (!cards.length) return;
+
+  const style = document.createElement("style");
+  style.id = "dynamic-events-styles";
+  style.textContent = `
+    .events-subhead{margin:-18px 0 24px;font-size:11px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+    .events-archive{margin-top:42px;padding-top:24px;border-top:1px solid var(--line)}
+    .events-archive summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:18px;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+    .events-archive summary::-webkit-details-marker{display:none}
+    .events-archive summary::after{content:"+";font-size:22px;font-weight:300;line-height:1;color:var(--accent)}
+    .events-archive[open] summary{margin-bottom:24px}
+    .events-archive[open] summary::after{content:"−"}
+    .events-archive .event-card{opacity:.72}
+    .events-archive .event-card:hover{opacity:1}
+    @media(max-width:700px){.events-subhead{margin-top:-12px}.events-archive{margin-top:32px}}
+  `;
+  document.head.appendChild(style);
+
+  const getEventDate = (card) => {
+    let iso = card.dataset.date || "";
+    if (!iso) {
+      const src = card.querySelector("img")?.getAttribute("src") || "";
+      const match = src.match(/event-(\d{4})-(\d{2})-(\d{2})-/);
+      if (match) iso = `${match[1]}-${match[2]}-${match[3]}`;
+    }
+    if (!iso) return null;
+    const date = new Date(`${iso}T23:59:59`);
+    return Number.isNaN(date.getTime()) ? null : date;
+  };
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const upcoming = [];
+  const past = [];
+  const unknown = [];
+
+  cards.forEach((card) => {
+    const date = getEventDate(card);
+    if (!date) {
+      unknown.push({ card, date: null });
+    } else if (date >= today) {
+      upcoming.push({ card, date });
+    } else {
+      past.push({ card, date });
+    }
+  });
+
+  upcoming.sort((a, b) => a.date - b.date);
+  past.sort((a, b) => b.date - a.date);
+
+  grid.replaceChildren(...upcoming.map(item => item.card), ...unknown.map(item => item.card));
+
+  if (upcoming.length || unknown.length) {
+    const subhead = document.createElement("div");
+    subhead.className = "events-subhead";
+    subhead.dataset.ru = "Ближайшие концерты";
+    subhead.dataset.en = "Upcoming shows";
+    subhead.textContent = subhead.dataset[lang];
+    grid.before(subhead);
+  } else {
+    grid.hidden = true;
+    const empty = document.createElement("div");
+    empty.className = "events-empty";
+    empty.innerHTML = `
+      <div class="events-date">—</div>
+      <div class="events-copy">
+        <h3 data-ru="Новые даты скоро" data-en="New dates coming soon">Новые даты скоро</h3>
+        <p data-ru="Следите за обновлениями — ближайшие выступления появятся здесь." data-en="Stay tuned — upcoming shows will appear here.">Следите за обновлениями — ближайшие выступления появятся здесь.</p>
+      </div>
+    `;
+    grid.before(empty);
+  }
+
+  if (past.length) {
+    const archive = document.createElement("details");
+    archive.className = "events-archive";
+
+    const summary = document.createElement("summary");
+    summary.dataset.ru = `Прошедшие концерты · ${past.length}`;
+    summary.dataset.en = `Past shows · ${past.length}`;
+    summary.textContent = summary.dataset[lang];
+
+    const archiveGrid = document.createElement("div");
+    archiveGrid.className = "events-grid";
+    past.forEach(({ card }) => archiveGrid.appendChild(card));
+
+    archive.append(summary, archiveGrid);
+    section.appendChild(archive);
+  }
+})();
+
 // Google Analytics 4 — meaningful outbound actions
 (() => {
   const send = (name, params = {}) => {
