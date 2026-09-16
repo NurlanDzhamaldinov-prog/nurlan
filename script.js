@@ -103,5 +103,28 @@
     const text=installed ? (lang==='ru'?'Сайт уже открыт как приложение.':'The site is already running as an app.') : ios ? (lang==='ru'?'В Safari: «Поделиться» → «На экран Домой».':'In Safari: Share → Add to Home Screen.') : (lang==='ru'?'Откройте меню браузера и выберите «Установить приложение», если этот пункт доступен. Вы также можете добавить сайт в закладки.':'Open your browser menu and choose Install app if available. You can also bookmark this site.');
     let status=$('#installStatus');if(!status){status=document.createElement('p');status.id='installStatus';status.setAttribute('role','status');$('.install-card').append(status);}status.textContent=text;
   });
-  if('serviceWorker' in navigator && ['http:','https:'].includes(location.protocol))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+  if ('serviceWorker' in navigator && ['http:', 'https:'].includes(location.protocol)) {
+    const workers = navigator.serviceWorker;
+    let controlled = Boolean(workers.controller);
+    let reloading = false;
+    workers.addEventListener('controllerchange', () => {
+      // Refresh only an existing controlled page, once; never reload a first visit.
+      if (controlled && !reloading) {
+        reloading = true;
+        location.reload();
+      }
+      controlled = true;
+    });
+    const register = () => workers.register('./sw.js', { updateViaCache: 'none' })
+      .then(registration => {
+        const check = () => registration.update().catch(() => {});
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'visible') check();
+        });
+        window.addEventListener('online', check);
+      }).catch(() => {});
+    if (document.readyState === 'complete') register();
+    else window.addEventListener('load', register, { once: true });
+  }
 })();
+
